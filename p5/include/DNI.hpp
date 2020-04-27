@@ -23,6 +23,12 @@ class DNI {
   
   operator unsigned long() const;
   bool operator == (const DNI& dni) const;
+  bool operator <(const DNI& dni) const;
+  bool operator >(const DNI& dni) const;
+  bool operator <=(const DNI& dni) const;
+  bool operator >=(const DNI& dni) const;
+  bool operator !=(const DNI& dni) const;
+
   static Counter counter;
 
  private:
