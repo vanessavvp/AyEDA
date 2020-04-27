@@ -33,3 +33,47 @@ bool DNI::operator ==(const DNI& dni) const {
   return false;
 }
 
+
+bool DNI::operator <(const DNI& dni) const {
+  DNI::counter.inc();
+
+  if (idNumber_ < dni.idNumber_) 
+    return true;
+  return false;
+}
+
+
+bool DNI::operator >(const DNI& dni) const {
+  DNI::counter.inc();
+
+  if (idNumber_ > dni.idNumber_) 
+    return true;
+  return false;
+}
+
+
+bool DNI::operator <=(const DNI& dni) const {
+  DNI::counter.inc();
+
+  if (idNumber_ <= dni.idNumber_) 
+    return true;
+  return false;
+}
+
+
+bool DNI::operator >=(const DNI& dni) const {
+  DNI::counter.inc();
+
+  if (idNumber_ >= dni.idNumber_) 
+    return true;
+  return false;
+}
+
+
+bool DNI::operator !=(const DNI& dni) const {
+  DNI::counter.inc();
+
+  if (idNumber_ != dni.idNumber_) 
+    return true;
+  return false;
+}
