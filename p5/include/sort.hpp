@@ -29,7 +29,8 @@ void show(std::vector<Clave>& sequence) {
 
 template <typename Clave> 
 std::vector<Clave> insertion(std::vector<Clave>& sequence, int size) {
-  int j, new_element_x;
+  int j;
+  Clave new_element_x;
 
   for (int i = 1; i < size; i++) {
     DNI::counter.reset();
@@ -111,7 +112,7 @@ template <typename Clave>
 std::vector<Clave> quickSort(std::vector<Clave>& sequence, int begin, int end) {
   int new_begin = begin;
   int new_end   = end;
-  int pivot = sequence[(new_begin + new_end) / 2];
+  Clave pivot = sequence[(new_begin + new_end) / 2];
   
   while (new_begin <= new_end) {
 
@@ -130,3 +131,37 @@ std::vector<Clave> quickSort(std::vector<Clave>& sequence, int begin, int end) {
 
   return sequence; 
 }
+
+
+
+
+template<typename Clave>
+void deltaSort(int delta , std::vector<Clave>& sequence, int size) {
+  Clave x_data;
+
+  for (int i = delta; i < size; i++) {
+    x_data = sequence[i];
+    int j = i;
+
+    while ((j >= delta) && (x_data < sequence[j-delta])) {
+      sequence[j] = sequence[j-delta];
+      j = j - delta;
+    } 
+    sequence[j] = x_data;
+  } 
+}
+
+
+
+template <typename Clave>
+std::vector<Clave> shellSort(float alfa, std::vector<Clave>& sequence, int size) {
+  int delta = size * alfa;
+  
+  while (delta > 1){
+    delta = delta / 2;
+    deltaSort(delta, sequence, size);
+  }
+
+  return sequence;
+}
+
