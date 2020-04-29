@@ -73,19 +73,19 @@ std::vector<Clave> bubbleSort(std::vector<Clave>& sequence, int size, int mode) 
         aux = j-1;
         aux2 = j;
       }
-      //Demonstration Mode = 1 ------------------------------------------------------
+    }
+    //Demonstration Mode = 1 ------------------------------------------------------
       if (mode == 1) {
         std::cout << "\nEvery modification will be shown on red\n";
-        for (int i = 0; i < sequence.size(); i++) {
-          if (i == aux || i == aux2) {
-            std::cout << "\033[0;"+red_color << sequence[i] << " \033[0m" << " ";
+        for (int k = 0; k < sequence.size(); k++) {
+          if (k == aux || k == aux2) {
+            std::cout << "\033[0;"+red_color << sequence[k] << " \033[0m" << " ";
           }
-          else std::cout << sequence[i] << " ";
+          else std::cout << sequence[k] << " ";
         }
         std::cout << "\n";
       } 
       //--------------------------------------------------------------------------------
-    }
   }
   return sequence;
 }
@@ -120,8 +120,10 @@ void heapify(int iterator, std::vector<Clave>& sequence, int size_seq) {
 
 
 template <typename Clave>
-std::vector<Clave> heapSort(std::vector<Clave>& sequence, int size) {
+std::vector<Clave> heapSort(std::vector<Clave>& sequence, int size, int mode) {
   int half_size = size/2;
+  int aux, aux2, iter;
+  std::string red_color = "31m";
 
   for (int i = half_size-1; i >= 0; i--) {
     heapify(i, sequence, size);
@@ -130,6 +132,22 @@ std::vector<Clave> heapSort(std::vector<Clave>& sequence, int size) {
   for (int i = size-1; i >= 0; i--) {
     std::swap(sequence[0], sequence[i]);
     heapify(0, sequence, i-1);
+    
+    aux = 0;
+    aux2 = i;
+    //Demonstration Mode = 1 ------------------------------------------------------
+    if (mode == 1) {
+      std::cout << "\nEvery modification will be shown on red\n";
+      for (int k = 0; k < sequence.size(); k++) {
+        if (k == aux || k == aux2) {
+          std::cout << "\033[0;"+red_color << sequence[k] << " \033[0m" << " ";
+        }
+        else std::cout << sequence[k] << " ";
+      }
+      std::cout << "\n";
+    } 
+    //--------------------------------------------------------------------------------
+    
   }
   return sequence; 
 }
