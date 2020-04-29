@@ -13,19 +13,33 @@
 #define INCLUDE_COUNTER_H
 
 #include <iostream>
+#include <iomanip>
 
 class Counter {
  public:
   Counter();
   ~Counter(){};
 
+  int getMin(void);
+  int getMax(void);
+  int getQuantity(void);
+
+  void setMin(int& newMin);
+  void setMax(int& newMax);
+
   void reset(void);
   void inc(void);
   void inc(int amount_to_increase);
-  int  getQuantity(void);
+  void resetQuantity(void);
+  void calculateStatistics(void);
+  void showStatisticsResults(void);
 
  private:
   int quantity_;
+  int min_;
+  int max_;
+  float media_;
+  int testNumber_;
 };
 
 #endif //INCLUDE_COUNTER_H

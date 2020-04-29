@@ -9,16 +9,60 @@
  * Purpose: Sorting methods
  */
 
+#include <limits>
+
 #include "../include/counter.hpp"
 
 Counter::Counter(void) {
-  quantity_ = 0;
+  reset();
 }
+
+
+
+int Counter::getQuantity(void) {
+  return quantity_;
+}
+
+
+
+int Counter::getMin(void) {
+  return min_;
+}
+
+
+
+int Counter::getMax(void) {
+  return max_;
+}
+
+
+
+void Counter::setMin(int& newMin) {
+  min_ =  newMin;
+}
+
+
+
+void Counter::setMax(int& newMax) {
+  max_ =  newMax;
+}
+
 
 
 void Counter::reset(void) {
+  quantity_   = 0;
+  min_        = INT16_MAX;
+  max_        = INT16_MIN;
+  media_      = 0;
+  testNumber_ = 0;
+}
+
+
+
+void Counter::resetQuantity(void) {
   quantity_ = 0;
 }
+
 
 
 void Counter::inc(void) {
@@ -26,11 +70,29 @@ void Counter::inc(void) {
 }
 
 
+
 void Counter::inc(int amount_to_increase) {
   quantity_ += amount_to_increase;
 }
 
 
-int Counter::getQuantity(void) {
-  return quantity_;
+
+void Counter::calculateStatistics(void) {
+  if (quantity_ < min_)
+    min_ = quantity_;
+
+  if (quantity_ > max_)
+    max_ = quantity_;
+
+  media_ += quantity_;
+  testNumber_ ++;
+}
+
+
+
+void Counter::showStatisticsResults(void) {
+  std::cout <<"\t\tMinimun value" << std::setw(10) << "Middle value";
+  std::cout << std::setw(10) << "Maximum value\n";
+  std::cout << std::setw(20) << min_ << std::setw(10) << media_/testNumber_;
+  std::cout << std::setw(10) << max_ << "\n";
 }
