@@ -15,12 +15,9 @@
 
 
 template <typename Clave> 
-void show(std::vector<Clave>& sequence) {
-  std::cout << "\n";
-  
-  for (int i = 0; i < sequence.size(); i++) {
-      std::cout << sequence[i] << " ";
-  }
+void show(std::vector<Clave>& sequence) {  
+  for (int i = 0; i < sequence.size(); i++) 
+    std::cout << sequence[i] << " ";
   std::cout << "\n";
 }
 
@@ -28,20 +25,36 @@ void show(std::vector<Clave>& sequence) {
 //---------------- Quadratic Sorting Methods ------------------------
 
 template <typename Clave> 
-std::vector<Clave> insertion(std::vector<Clave>& sequence, int size) {
+std::vector<Clave> insertion(std::vector<Clave>& sequence, int size, int mode) {
   int j;
   Clave new_element_x;
+  int aux, aux2;
+  std::string red_color = "31m";
 
   for (int i = 1; i < size; i++) {
     j = i;
     new_element_x = sequence[i];
-
+    
     while (new_element_x < sequence[j-1]) {
       sequence[j] = sequence[j-1];
+      aux = j;
       j--;
     }
     sequence[j] = new_element_x;
-    //show(sequence);
+    aux2 = j;
+
+    //Demonstration Mode = 1 ------------------------------------------------------
+    if (mode == 1) {
+      std::cout << "\nEvery modification will be shown on red\n";
+      for (int i = 0; i < sequence.size(); i++) {
+        if (i == aux || i == aux2) {
+          std::cout << "\033[0;"+red_color << sequence[i] << " \033[0m" << " ";
+        }
+        else std::cout << sequence[i] << " ";
+      }
+      std::cout << "\n";
+    } 
+    //--------------------------------------------------------------------------------
   }
   return sequence;
 }
@@ -49,13 +62,29 @@ std::vector<Clave> insertion(std::vector<Clave>& sequence, int size) {
 
 
 template <typename Clave> 
-std::vector<Clave> bubbleSort(std::vector<Clave>& sequence, int size) {
+std::vector<Clave> bubbleSort(std::vector<Clave>& sequence, int size, int mode) {
+  int aux, aux2;
+  std::string red_color = "31m";
+
   for (int i = 1; i < size; i++) {
     for (int j = size-1; j >= i; j--) {
       if (sequence[j] < sequence[j-1]) {
         std::swap(sequence[j-1], sequence[j]);
+        aux = j-1;
+        aux2 = j;
       }
-      //show(sequence);
+      //Demonstration Mode = 1 ------------------------------------------------------
+      if (mode == 1) {
+        std::cout << "\nEvery modification will be shown on red\n";
+        for (int i = 0; i < sequence.size(); i++) {
+          if (i == aux || i == aux2) {
+            std::cout << "\033[0;"+red_color << sequence[i] << " \033[0m" << " ";
+          }
+          else std::cout << sequence[i] << " ";
+        }
+        std::cout << "\n";
+      } 
+      //--------------------------------------------------------------------------------
     }
   }
   return sequence;
