@@ -18,7 +18,7 @@ void userInteraction();
 int main (void) {
     std::cout << "\n\t\tSorting methods\n\n\t--- Demonstration Mode Program ---\n";  
     userInteraction();
-    std::cout << "\nEnding demonstration...";
+    std::cout << "\nEnding demonstration...\n";
   
     return EXIT_SUCCESS;
 }
@@ -39,7 +39,7 @@ void userInteraction() {
         std::cin >> size;
     }
 
-    srand(time(NULL));
+    srand(10);
     std::vector<DNI> DNI_vector(size);
     std::vector<DNI> DNI_result_vector(size);
 
@@ -52,77 +52,82 @@ void userInteraction() {
     std::cin >> sort_method;
     
     switch (sort_method) {
-      case 'I':
-        std::cout << "\n\t\tInsertion\n";
-        //Llamar a la funcion de imprimir traza
-        DNI_result_vector = insertion<DNI>(DNI_vector, DNI_vector.size());
-        std::cout << "\nSorted vector: ";
+        case 'I':
+          std::cout << "\n\t\t--- Insertion ---\nOriginal vector -> ";
+          show(DNI_vector);
+          DNI_result_vector = insertion<DNI>(DNI_vector, DNI_vector.size(), 1);
+          std::cout << "\nSorted vector -> ";
+  
+          for (int i = 0; i < DNI_vector.size(); i++) {
+            std::cout << DNI_result_vector[i] << " ";
+          }
+          std::cout << "\n";
+          break;
+  
 
-        for (int i = 0; i < DNI_vector.size(); i++) {
-          std::cout << DNI_result_vector[i] << " ";
-        }
-        std::cout << "\n";
-        break;
+        case 'B':
+          std::cout << "\n\t\t--- BubbleSort ---\nOriginal vector -> ";
+          show(DNI_vector);
+          DNI_result_vector = bubbleSort<DNI>(DNI_vector, DNI_vector.size(), 1);
+          std::cout << "\nSorted vector -> ";
+  
+          for (int i = 0; i < DNI_vector.size(); i++) {
+            std::cout << DNI_result_vector[i] << " ";
+          }
+          std::cout << "\n";
+          break;
+  
 
-      case 'B':
-        std::cout << "\n\t\tBubbleSort\n";
-        //Llamar a la funcion de imprimir traza
-        DNI_result_vector = bubbleSort<DNI>(DNI_vector, DNI_vector.size());
-        std::cout << "\nSorted vector: ";
+        case 'H':
+          std::cout << "\n\t\t--- HeapSort ---\nOriginal vector -> ";
+          show(DNI_vector);
+          DNI_result_vector = heapSort<DNI>(DNI_vector, DNI_vector.size(), 1);
+          std::cout << "\nSorted vector -> ";
+  
+          for (int i = 0; i < DNI_vector.size(); i++) {
+            std::cout << DNI_result_vector[i] << " ";
+          }
+          std::cout << "\n";
+          break;
+  
 
-        for (int i = 0; i < DNI_vector.size(); i++) {
-          std::cout << DNI_result_vector[i] << " ";
-        }
-        std::cout << "\n";
-        break;
+        case 'Q':
+          std::cout << "\n\t\t--- QuickSort ---\nOriginal vector -> ";
+          show(DNI_vector);
+          DNI_result_vector = quickSort<DNI>(DNI_vector, 0, DNI_vector.size()-1);
+          std::cout << "\nSorted vector -> ";
+  
+          for (int i = 0; i < DNI_vector.size(); i++) {
+            std::cout << DNI_result_vector[i] << " ";
+          }
+          std::cout << "\n";
+          break;
+  
 
-      case 'H':
-        std::cout << "\n\t\tHeapSort\n";
-        //Llamar a la funcion de imprimir traza
-        DNI_result_vector = heapSort<DNI>(DNI_vector, DNI_vector.size());
-        std::cout << "\nSorted vector: ";
-
-        for (int i = 0; i < DNI_vector.size(); i++) {
-          std::cout << DNI_result_vector[i] << " ";
-        }
-        std::cout << "\n";
-        break;
-
-      case 'Q':
-        std::cout << "\n\t\tQuickSort\n";
-        //Llamar a la funcion de imprimir traza
-        DNI_result_vector = quickSort<DNI>(DNI_vector, 0, DNI_vector.size()-1);
-        std::cout << "\nSorted vector: ";
-
-        for (int i = 0; i < DNI_vector.size(); i++) {
-          std::cout << DNI_result_vector[i] << " ";
-        }
-        std::cout << "\n";
-        break;
-
-      case 'S':
-        std::cout << "\n\t\tShellSort\n";
-        std::cout << "Introduce the reduction factor between [0-1]: ";
-        std::cin >> reduction_factor;
-
-        while (reduction_factor <= 0 || reduction_factor >= 1){
-          std::cout << "\nERROR: The reduction factor must be between [0-1]";
-          std::cout << " please, introduce it again: ";
+        case 'S':
+          std::cout << "\n\t\t--- ShellSort ---\nOriginal vector -> ";
+          std::cout << "Introduce the reduction factor between [0-1]: ";
           std::cin >> reduction_factor;
-        }
-        //Llamar a la funcion de imprimir traza
-        DNI_result_vector = quickSort<DNI>(DNI_vector, 0, DNI_vector.size()-1);
-        std::cout << "\nSorted vector: ";
-
-        for (int i = 0; i < DNI_vector.size(); i++) {
-          std::cout << DNI_result_vector[i] << " ";
-        }
-        std::cout << "\n";
-        break;
-    
-      default:
-        std::cout << "ERROR: The introduce option is not correct\n";
-        break;
+  
+          while (reduction_factor <= 0 || reduction_factor >= 1){
+            std::cout << "\nERROR: The reduction factor must be between [0-1]";
+            std::cout << " please, introduce it again: ";
+            std::cin >> reduction_factor;
+          }
+          show(DNI_vector);
+          DNI_result_vector = quickSort<DNI>(DNI_vector, 0, DNI_vector.size()-1);
+          std::cout << "\nSorted vector -> ";
+  
+          for (int i = 0; i < DNI_vector.size(); i++) {
+            std::cout << DNI_result_vector[i] << " ";
+          }
+          std::cout << "\n";
+          break;
+      
+      
+        default:
+          std::cout << "ERROR: The introduced option is not correct\n";
+          break;
     }    
 }
 
