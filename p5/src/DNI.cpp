@@ -20,9 +20,17 @@ DNI::DNI(void) {
 }
 
 
+
+unsigned long DNI::getIdNumber(void) {
+  return idNumber_;
+}
+
+
+
 DNI::operator unsigned long() const {
   return idNumber_;
 }
+
 
 
 bool DNI::operator ==(const DNI& dni) const {
@@ -34,6 +42,7 @@ bool DNI::operator ==(const DNI& dni) const {
 }
 
 
+
 bool DNI::operator <(const DNI& dni) const {
   DNI::counter.inc();
 
@@ -41,6 +50,7 @@ bool DNI::operator <(const DNI& dni) const {
     return true;
   return false;
 }
+
 
 
 bool DNI::operator >(const DNI& dni) const {
@@ -52,6 +62,7 @@ bool DNI::operator >(const DNI& dni) const {
 }
 
 
+
 bool DNI::operator <=(const DNI& dni) const {
   DNI::counter.inc();
 
@@ -61,6 +72,7 @@ bool DNI::operator <=(const DNI& dni) const {
 }
 
 
+
 bool DNI::operator >=(const DNI& dni) const {
   DNI::counter.inc();
 
@@ -68,6 +80,7 @@ bool DNI::operator >=(const DNI& dni) const {
     return true;
   return false;
 }
+
 
 
 bool DNI::operator !=(const DNI& dni) const {

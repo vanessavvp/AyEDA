@@ -21,6 +21,7 @@ class DNI {
   DNI(void);
   ~DNI(void) {};
   
+  unsigned long getIdNumber(void);
   operator unsigned long() const;
   bool operator == (const DNI& dni) const;
   bool operator <(const DNI& dni) const;
