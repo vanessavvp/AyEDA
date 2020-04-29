@@ -163,27 +163,3 @@ std::vector<Clave> shellSort(float alfa, std::vector<Clave>& sequence, int size)
   
   return sequence;
 }
-
-
-
-template <typename Clave>
-void ordenar(int methods_number, std::vector<Clave>& sequence_vector, int& delta) {
-  switch (methods_number) {
-    case 1:
-      insertion<Clave>(sequence_vector, sequence_vector.size()); break;
-
-    case 2:
-      bubbleSort<Clave>(sequence_vector, sequence_vector.size()); break;
-    
-    case 3:
-      heapSort<Clave>(sequence_vector, sequence_vector.size()); break;
-
-    case 4:
-      quickSort<Clave>(sequence_vector, 0, sequence_vector.size()-1); break;
-
-    case 5:
-      insertion<Clave>(delta, sequence_vector, sequence_vector.size()); break;
-  
-    default:break;
-  }
-}
