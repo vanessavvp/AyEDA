@@ -33,60 +33,60 @@ DNI::operator unsigned long() const {
 
 
 
-bool DNI::operator ==(const DNI& dni) const {
+bool DNI::operator ==(const DNI& DNI) const {
   DNI::counter.inc();
 
-  if (idNumber_ == dni.idNumber_) 
+  if (idNumber_ == DNI.idNumber_) 
     return true;
   return false;
 }
 
 
 
-bool DNI::operator <(const DNI& dni) const {
+bool DNI::operator <(const DNI& DNI) const {
   DNI::counter.inc();
 
-  if (idNumber_ < dni.idNumber_) 
+  if (idNumber_ < DNI.idNumber_) 
     return true;
   return false;
 }
 
 
 
-bool DNI::operator >(const DNI& dni) const {
+bool DNI::operator >(const DNI& DNI) const {
   DNI::counter.inc();
 
-  if (idNumber_ > dni.idNumber_) 
+  if (idNumber_ > DNI.idNumber_) 
     return true;
   return false;
 }
 
 
 
-bool DNI::operator <=(const DNI& dni) const {
+bool DNI::operator <=(const DNI& DNI) const {
   DNI::counter.inc();
 
-  if (idNumber_ <= dni.idNumber_) 
+  if (idNumber_ <= DNI.idNumber_) 
     return true;
   return false;
 }
 
 
 
-bool DNI::operator >=(const DNI& dni) const {
+bool DNI::operator >=(const DNI& DNI) const {
   DNI::counter.inc();
 
-  if (idNumber_ >= dni.idNumber_) 
+  if (idNumber_ >= DNI.idNumber_) 
     return true;
   return false;
 }
 
 
 
-bool DNI::operator !=(const DNI& dni) const {
+bool DNI::operator !=(const DNI& DNI) const {
   DNI::counter.inc();
 
-  if (idNumber_ != dni.idNumber_) 
+  if (idNumber_ != DNI.idNumber_) 
     return true;
   return false;
 }
