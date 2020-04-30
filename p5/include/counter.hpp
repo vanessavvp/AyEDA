@@ -32,7 +32,7 @@ class Counter {
   void inc(int amount_to_increase);
   void resetQuantity(void);
   void calculateStatistics(void);
-  void showStatisticsResults(void);
+  void showStatisticsResults(std::string& method_name);
 
  private:
   int quantity_;
