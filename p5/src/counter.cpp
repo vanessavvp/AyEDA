@@ -90,9 +90,7 @@ void Counter::calculateStatistics(void) {
 
 
 
-void Counter::showStatisticsResults(void) {
-  std::cout <<"\t\tMinimun value" << std::setw(10) << "Middle value";
-  std::cout << std::setw(10) << "Maximum value\n";
-  std::cout << std::setw(20) << min_ << std::setw(10) << media_/testNumber_;
+void Counter::showStatisticsResults(std::string& method_name) {
+  std::cout << std::setw(10) << method_name << std::setw(10) << min_ << std::setw(16) << media_/testNumber_;
   std::cout << std::setw(10) << max_ << "\n";
 }
