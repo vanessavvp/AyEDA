@@ -43,6 +43,12 @@ float Counter::getMedia(void) {
 
 
 
+int Counter::getTestNumber(void) {
+  return testNumber_;
+}
+
+
+
 void Counter::setMin(int& newMin) {
   min_ =  newMin;
 }
@@ -96,7 +102,8 @@ void Counter::calculateStatistics(void) {
 
 
 
-void Counter::showStatisticsResults(std::string& method_name) {
-  std::cout << std::setw(10) << method_name << std::setw(10) << min_ << std::setw(16) << media_/testNumber_;
-  std::cout << std::setw(10) << max_ << "\n";
+void Counter::showStatisticsResults(int& tam_arbol, int& n_pruebas) {
+  std::cout << std::setw(10) << tam_arbol << std::setw(10) << n_pruebas;
+  std::cout << std::setw(10) << min_ << std::setw(16) << media_/testNumber_;
+  std::cout << std::setw(8) << max_ << "\n";
 }
