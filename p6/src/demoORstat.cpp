@@ -79,55 +79,65 @@ char modoDemostracion(void) {
 
 
 char modoEstadistica(void) {
-  int tam_arbol, nPruebas; //tam_arbol = N EN EL PDF
+  int tam_arbol, n_pruebas; //tam_arbol = N EN EL PDF
   char opcion_salida;
   
   do {
-  std::cout << "\nTamaño del árbol: ";  std::cin >> tam_arbol;
-  std::cout << "\nNúmero de pruebas: "; std::cin >> nPruebas;
-
-  int tam_banco_pruebas = tam_arbol * 2;
-  std::vector<DNI> banco_pruebas(tam_banco_pruebas);
-
-  for (int i = 0; i < tam_banco_pruebas; i++) {
-    srand(10); //srand(time(NULL));
-    banco_pruebas[i] = rand(); //DNI() //% 100000000;
-  }
-
-  ArbolBB<DNI> nuevo_arbol;
-
-  for (int j = 0; j < tam_arbol; j++) 
-    nuevo_arbol.insertar(banco_pruebas[j]);
-
-  std::cout << "\nNÚMERO DE COMPARACIONES\n";
-  std::cout << std::setw(20) << "N" << std::setw(15) << "Pruebas" << std::setw(10) << "Mínimo" << std::setw(10) << "Medio" << std::setw(10) << "Máximo\n";
+    std::cout << "\nTamaño del árbol: ";  std::cin >> tam_arbol;
+    std::cout << "Número de pruebas: "; std::cin >> n_pruebas;
   
-  // Experimento de busqueda
-  for (int prueba_actual = 0; prueba_actual < nPruebas; prueba_actual++) {
-    srand(time(NULL)); //srand(time(NULL));
-    DNI::counter.resetQuantity();
-    nuevo_arbol.buscar(banco_pruebas[rand() % tam_arbol]);
-    DNI::counter.calculateStatistics();
-  }
+    int tam_banco_pruebas = tam_arbol * 2;
 
-  std::cout << "Búsqueda" << std::setw(10) << tam_arbol << std::setw(10) << nPruebas << std::setw(10) << DNI::counter.getMin() << std::setw(10) << DNI::counter.getMedia()/nPruebas << std::setw(10) << DNI::counter.getMax() << "\n";
-  DNI::counter.reset();
+    srand(1000);
+    std::vector<DNI> banco_pruebas(tam_banco_pruebas);
+  
+    for (int i = 0; i < tam_banco_pruebas; i++) {
+      banco_pruebas[i] = DNI();
+    }
+  
+    std::cout << "DNI creados: ";
+    for (int i = 0; i < tam_banco_pruebas; i++) {
+      std::cout << banco_pruebas[i] << " ";
+    }
 
+    ArbolBB<DNI> nuevo_arbol;
+    DNI::counter.reset();
+  
+    for (int j = 0; j < tam_arbol; j++) 
+      nuevo_arbol.insertar(banco_pruebas[j]);
+  
+    std::cout << "\n\n\t\tNÚMERO DE COMPARACIONES\n";
+    std::cout << std::setw(18) << "N" << std::setw(16) << "Pruebas";
+    std::cout << std::setw(10) << "Mínimo" << std::setw(9) << "Medio";
+    std::cout << std::setw(13) << "Máximo\n";
+    
+    // Experimento de busqueda
+    for (int prueba_actual = 0; prueba_actual < n_pruebas; prueba_actual++) {
+      DNI::counter.resetQuantity();
+      nuevo_arbol.buscar(banco_pruebas[rand() % tam_arbol]);
+      DNI::counter.calculateStatistics();
+    }
+  
+    std::cout << std::setw(9) << "Búsqueda"; 
+    DNI::counter.showStatisticsResults(tam_arbol, n_pruebas);
+    DNI::counter.reset();
+  
+    // Experimento de insercion
+    for (int prueba_actual = 0;  prueba_actual < n_pruebas; prueba_actual++) {
+      DNI::counter.resetQuantity();
+      nuevo_arbol.buscar(banco_pruebas[(rand() % tam_arbol) + tam_arbol]);
+      //nuevo_arbol.buscar(banco_pruebas[rand() % (tam_arbol - (tam_arbol * 2 - 1))]);
+      DNI::counter.calculateStatistics();
+    }
+  
+    std::cout << std::setw(9) << "Inserción";
+    DNI::counter.showStatisticsResults(tam_arbol, n_pruebas);
+    DNI::counter.reset();
+  
+  
+    // Opcion de salida
+    std::cout << "\n¿Desea intentarlo de nuevo? [S - N] \n"; std::cin >> opcion_salida;
 
-  // Experimento de insercion
-  for (int prueba_actual = 0;  prueba_actual < nPruebas; prueba_actual++) {
-    srand(time(NULL)); //srand(time(NULL));
-    DNI::counter.resetQuantity();
-    nuevo_arbol.buscar(banco_pruebas[rand() % (tam_arbol - (tam_arbol * 2 -1))]);
-    DNI::counter.calculateStatistics();
-  }
-
-  std::cout << "Inserción" << std::setw(10) << tam_arbol << std::setw(10) << nPruebas << std::setw(10) << DNI::counter.getMin() << std::setw(10) << DNI::counter.getMedia()/nPruebas << std::setw(10) << DNI::counter.getMax() << "\n";
-  DNI::counter.reset();
-
-
-  // Opcion de salida
-  std::cout << "\n¿Desea intentarlo de nuevo? [S - N] \n"; std::cin >> opcion_salida;
   } while (opcion_salida != 'N');
 
   std::cout << "\nHasta luego!\n";

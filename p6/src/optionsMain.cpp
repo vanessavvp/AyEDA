@@ -25,7 +25,6 @@ int main(void) {
   do {
     switch (opcion) {
 
-
       case 'D': 
         opcion_auxiliar = modoDemostracion(); 
         opcion = opcion_auxiliar;
@@ -39,7 +38,6 @@ int main(void) {
       
 
       default: std::cout << "ERROR: La opción introducida no es correcta...\n"; break;
-
 
     }
 
