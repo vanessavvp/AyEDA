@@ -18,7 +18,7 @@ template <typename CLAVE>
 class NodoB {
  public:
   NodoB();
-  NodoB(const int dato, NodoB* izquierdo = nullptr, NodoB* derecho = nullptr);
+  NodoB(int dato, NodoB<CLAVE>* izquierdo = nullptr, NodoB<CLAVE>* derecho = nullptr);
   ~NodoB(){};
 
   CLAVE getDato(void)               { return dato_;     }
@@ -31,7 +31,7 @@ class NodoB {
   void write();
 
  public:
-  int dato_;
+  CLAVE dato_;
   NodoB<CLAVE>* izquierdo_;
   NodoB<CLAVE>* derecho_;
 };
@@ -43,8 +43,11 @@ NodoB<CLAVE>::NodoB(void) {
   izquierdo_ = nullptr;
   derecho_   = nullptr;
 }
+
+
+
 template <typename CLAVE>
-NodoB<CLAVE>::NodoB(const int dato, NodoB* izquierdo, NodoB* derecho) {
+NodoB<CLAVE>::NodoB(int dato, NodoB<CLAVE>* izquierdo, NodoB<CLAVE>* derecho) {
   dato_      = dato;
   izquierdo_ = izquierdo;
   derecho_   = derecho;
