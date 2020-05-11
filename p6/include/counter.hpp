@@ -23,6 +23,7 @@ class Counter {
   int getMin(void);
   int getMax(void);
   int getQuantity(void);
+  int getTestNumber(void);
   float getMedia(void);
 
   void setMin(int& newMin);
@@ -33,7 +34,7 @@ class Counter {
   void inc(int amount_to_increase);
   void resetQuantity(void);
   void calculateStatistics(void);
-  void showStatisticsResults(std::string& method_name);
+  void showStatisticsResults(int& tam_arbol, int& n_pruebas);
 
  private:
   int quantity_;
