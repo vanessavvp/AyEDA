@@ -23,15 +23,23 @@ class ArbolB {
   ArbolB(NodoB<CLAVE>* raiz)  { raiz_ = raiz;    }
   ~ArbolB()                   { podar(raiz_);     }
 
+  NodoB<CLAVE>* getRaiz(void);
   bool isVacio(NodoB<CLAVE>* nodo);
   bool isHoja(NodoB<CLAVE>* nodo);
   void podar(NodoB<CLAVE>* nodo);
-  void recorreN(NodoB<CLAVE>* raiz);
+  void recorreN(void);
   void procesar(NodoB<CLAVE>* nodo); //Funcion de impresion
 
  protected:
   NodoB<CLAVE>* raiz_;
 };
+
+
+
+template <typename CLAVE>
+NodoB<CLAVE>* ArbolB<CLAVE>::getRaiz(void) {
+  return raiz_;
+}
 
 
 
@@ -63,12 +71,12 @@ void ArbolB<CLAVE>::podar(NodoB<CLAVE>* nodo) {
 
 
 template <typename CLAVE>
-void ArbolB<CLAVE>::recorreN(NodoB<CLAVE>* raiz) {
+void ArbolB<CLAVE>::recorreN(void) {
   std::deque<std::pair<NodoB<CLAVE>*, int>> cola_auxiliar;
   NodoB<CLAVE>* nodo_auxiliar;
   int nivel, nivel_actual = 0;
 
-  cola_auxiliar.push_back(std::pair<NodoB<CLAVE>*, int>(raiz, 0));
+  cola_auxiliar.push_back(std::pair<NodoB<CLAVE>*, int>(raiz_, 0));
   std::cout << "Nivel 0: ";
 
   while (!cola_auxiliar.empty()) {
