@@ -19,29 +19,30 @@ int main(void) {
   std::cout << "Selecciona el modo del programa: \n";
   std::cout << "\t[D]emostración\n";
   std::cout << "\t[E]xperimento\n";
+  std::cout << "\t[S]alir\n";
   std::cout << "\tOpción: ";
   std::cin >> opcion;
 
-  do {
+  while (opcion != 'S') {
+
     switch (opcion) {
 
-      case 'D': 
-        opcion_auxiliar = modoDemostracion(); 
-        opcion = opcion_auxiliar;
-        break;
+      case 'D': opcion = modoDemostracion(); break;
   
 
-      case 'E': 
-        opcion_auxiliar = modoEstadistica();  
-        opcion = opcion_auxiliar;
-        break;
+      case 'E': opcion = modoEstadistica();  break;
+
+
+      case 'S': std::cout << "\n¡Hasta luego!\n"; break;
+
+
+      case 'R':  return EXIT_SUCCESS;  //Salir desde modo demostracion o estadistica
       
 
-      default: std::cout << "ERROR: La opción introducida no es correcta...\n"; break;
+      default: std::cout << "ERROR: La opción introducida no es correcta...\n"; return EXIT_FAILURE;
 
     }
 
-  } while (opcion != 'S');
-
+  } 
   return EXIT_SUCCESS;
 }
