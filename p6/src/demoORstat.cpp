@@ -43,7 +43,6 @@ void eliminarClave(ArbolBB<DNI>& nuevo_arbol) {
 }
 
 
-
 char modoDemostracion(void) {
   int clave_dada, opcion;
   ArbolBB<DNI> nuevo_arbol; //
@@ -52,7 +51,7 @@ char modoDemostracion(void) {
   std::cout << "\nArbol vacío\n";
   nuevo_arbol.recorreN();
 
-  do {
+  while (opcion != 0) {
     std::cout << "\nBienvenido al modo demostración! Por favor, escoge la opción que desee a continuación: \n";
     std::cout << "\t[0] Salir\n";
     std::cout << "\t[1] Insertar Clave\n";
@@ -66,14 +65,14 @@ char modoDemostracion(void) {
 
       case 2:  eliminarClave(nuevo_arbol); break;
 
-      case 0:  std::cout << "\nHasta luego!\n"; return 'S'; break;
+      case 0:  std::cout << "\n¡Hasta luego!\n"; break;
 
       default: std::cout << "\nERROR: Ha introducido la opción incorrecta\n"; break;
 
     }
-  } while (opcion != 0);
-  
-  return 'S';
+  } 
+
+  return 'R';
 }
 
 
@@ -82,23 +81,18 @@ char modoEstadistica(void) {
   int tam_arbol, n_pruebas; //tam_arbol = N EN EL PDF
   char opcion_salida;
   
-  do {
+  while (opcion_salida != 'N') {
     std::cout << "\nTamaño del árbol: ";  std::cin >> tam_arbol;
     std::cout << "Número de pruebas: "; std::cin >> n_pruebas;
   
     int tam_banco_pruebas = tam_arbol * 2;
 
-    srand(1000);
+    srand(1000); //srand(time(NULL))
     std::vector<DNI> banco_pruebas(tam_banco_pruebas);
-  
-    for (int i = 0; i < tam_banco_pruebas; i++) {
-      banco_pruebas[i] = DNI();
-    }
-  
-    std::cout << "DNI creados: ";
-    for (int i = 0; i < tam_banco_pruebas; i++) {
-      std::cout << banco_pruebas[i] << " ";
-    }
+    //std::cout << "DNI creados: "; //Para imprimir los DNI creados si se queire verificar
+    //for (int i = 0; i < tam_banco_pruebas; i++) {
+    //  std::cout << banco_pruebas[i] << " ";
+    //}
 
     ArbolBB<DNI> nuevo_arbol;
     DNI::counter.reset();
@@ -117,8 +111,7 @@ char modoEstadistica(void) {
       nuevo_arbol.buscar(banco_pruebas[rand() % tam_arbol]);
       DNI::counter.calculateStatistics();
     }
-  
-    std::cout << std::setw(9) << "Búsqueda"; 
+    std::cout << std::setw(10) << "Búsqueda"; 
     DNI::counter.showStatisticsResults(tam_arbol, n_pruebas);
     DNI::counter.reset();
   
@@ -138,9 +131,10 @@ char modoEstadistica(void) {
     // Opcion de salida
     std::cout << "\n¿Desea intentarlo de nuevo? [S - N] \n"; std::cin >> opcion_salida;
 
-  } while (opcion_salida != 'N');
-
-  std::cout << "\nHasta luego!\n";
-
-  return 'S';
+  } 
+  std::cout << "\n¡Hasta luego!\n";
+ 
+  return 'R';
+  
+  
 }
