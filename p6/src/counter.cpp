@@ -103,7 +103,7 @@ void Counter::calculateStatistics(void) {
 
 
 void Counter::showStatisticsResults(int& tam_arbol, int& n_pruebas) {
-  std::cout << std::setw(10) << tam_arbol << std::setw(10) << n_pruebas;
-  std::cout << std::setw(10) << min_ << std::setw(16) << media_/testNumber_;
-  std::cout << std::setw(8) << max_ << "\n";
+  std::cout << std::setw(9) << tam_arbol << std::setw(10) << n_pruebas;
+  std::cout << std::setw(10) << min_ << std::setw(10) << media_/testNumber_;
+  std::cout << std::setw(10) << max_ << "\n";
 }
