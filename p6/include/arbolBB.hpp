@@ -43,10 +43,11 @@ NodoB<CLAVE>* ArbolBB<CLAVE>::buscar(CLAVE& clave_dada) {
 
 template <typename CLAVE>
 NodoB<CLAVE>* ArbolBB<CLAVE>::buscarRama(NodoB<CLAVE>*& nodo, CLAVE& clave_dada) {
-  CLAVE clave_auxiliar = nodo->getDato();
 
   if (nodo == nullptr)
     return nullptr;
+
+  CLAVE clave_auxiliar = nodo->getDato();
 
   if (clave_dada == clave_auxiliar)
     return nodo;
